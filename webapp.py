@@ -14,8 +14,6 @@ def canvas():
 	sr_param = request.form['signed_request']
 	srHelper = SignedRequest(secret,sr_param)
 	canvasRequestJSON = srHelper.verifyAndDecode()
-	if request.form['contactzip']:
-		return request.form['contactzip']
 	return canvasRequestJSON
 
 if __name__ == "__main__":
