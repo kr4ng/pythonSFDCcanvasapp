@@ -17,7 +17,7 @@ def canvas():
 	canvasRequestJSON = srHelper.verifyAndDecode()
 	canvasRequest = json.loads(canvasRequestJSON)
 	print canvasRequest['context']['environment']['record']['Id']
-	return 'hello'
+	return canvasRequest['context']['environment']['record']['Id']
 
 if __name__ == "__main__":
 	app.run()
