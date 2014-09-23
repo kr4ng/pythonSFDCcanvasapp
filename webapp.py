@@ -14,7 +14,7 @@ def canvas():
 	sr_param = request.form['signed_request']
 	srHelper = SignedRequest(secret,sr_param)
 	canvasRequestJSON = srHelper.verifyAndDecode()
-	return canvasRequestJSON['context']['enviroment']['record']['id']
+	return canvasRequestJSON['context']['enviroment']['record']['Id']
 
 if __name__ == "__main__":
 	app.run()
