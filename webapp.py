@@ -2,6 +2,7 @@ from flask import Flask, request
 from canvas_signed_request import SignedRequest
 app = Flask(__name__)
 import os
+import json
 
 @app.route("/")
 def hello():
@@ -14,8 +15,8 @@ def canvas():
 	sr_param = request.form['signed_request']
 	srHelper = SignedRequest(secret,sr_param)
 	canvasRequestJSON = srHelper.verifyAndDecode()
-	print canvasRequestJSON('context')
-	return canvasRequestJSON['context']['enviroment']['record']['Id']
+	canvasRequest = json.loads(canvasRequestJSON)
+	return canvasRequest['context']['enviroment']['record']['Id']
 
 if __name__ == "__main__":
 	app.run()
