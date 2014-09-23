@@ -10,12 +10,12 @@ def hello():
 # add a new route
 @app.route('/canvas', methods=['POST'])
 def canvas():
-	if request.form['contactzip']:
-		return request.form['contactzip']
 	secret = os.environ.get('SECRET')
 	sr_param = request.form['signed_request']
 	srHelper = SignedRequest(secret,sr_param)
 	canvasRequestJSON = srHelper.verifyAndDecode()
+	if request.form['contactzip']:
+		return request.form['contactzip']
 	return canvasRequestJSON
 
 if __name__ == "__main__":
