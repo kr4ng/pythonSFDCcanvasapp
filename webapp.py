@@ -16,8 +16,9 @@ def canvas():
 	srHelper = SignedRequest(secret,sr_param)
 	canvasRequestJSON = srHelper.verifyAndDecode()
 	canvasRequest = json.loads(canvasRequestJSON)
+	print canvasRequest
 	contactID = canvasRequest['context']['environment']['record']['Id']
-	print canvasRequest['context']['environment']['record']['Id']
+	#print canvasRequest['context']['environment']['record']['Id']
 	return render_template('hellodfpython.html', contactID = contactID)
 
 if __name__ == "__main__":
