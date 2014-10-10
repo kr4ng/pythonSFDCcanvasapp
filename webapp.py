@@ -17,7 +17,7 @@ def canvas():
 	srHelper = SignedRequest(secret,sr_param)
 	canvasRequestJSON = srHelper.verifyAndDecode()
 	canvasRequest = json.loads(canvasRequestJSON)
-	print canvasRequest
+	#print canvasRequest
 	sessionId = canvasRequest.get('context').get('client').get('oauthToken')
 	
 	url = 'https://na15.salesforce.com' + canvasRequest['context']['environment']['record']['url']
