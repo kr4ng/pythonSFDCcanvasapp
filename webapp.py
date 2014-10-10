@@ -20,7 +20,7 @@ def canvas():
 	#print canvasRequest
 	sessionId = canvasRequest.get('context').get('client').get('oauthToken')
 	
-	url = 'https://na15.salesforce.com' + canvasRequest['context']['environment']['record']['url']
+	url = 'https://na15.salesforce.com' + canvasRequest['context']['environment']['record']['attributes']['url']
 	res = requests.get(contactUrl, headers={"Authorization": "Bearer %s" % sessionId})
 
 	print res, res.content
