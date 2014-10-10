@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 from canvas_signed_request import SignedRequest
+import requests
 app = Flask(__name__)
 import os
 import json
@@ -17,6 +18,12 @@ def canvas():
 	canvasRequestJSON = srHelper.verifyAndDecode()
 	canvasRequest = json.loads(canvasRequestJSON)
 	print canvasRequest
+	sessionId = canvasRequest.get('context').get('client').get('oauthToken')
+	
+	url = 'https://na15.salesforce.com' + canvasRequest['context']['environment']['record']['url']
+	res = requests.get(contactUrl, headers={"Authorization": "Bearer %s" % sessionId})
+
+	print res, res.content, res.json()
 	contactID = canvasRequest['context']['environment']['record']['Id']
 	#print canvasRequest['context']['environment']['record']['Id']
 	return render_template('hellodfpython.html', contactID = contactID)
@@ -109,7 +116,7 @@ if __name__ == "__main__":
 				"clientHeight":"30px"
 			},
 			"parameters":{  
-
+			
 			},
 			"record":{  
 				"Id":"003i000000IMVhXAAX",
